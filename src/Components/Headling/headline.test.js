@@ -1,8 +1,8 @@
 import { React } from "react";
 import { shallow } from "enzyme";
 import Headline from "./index";
-import { findTestbyAttr } from "./../../Utils/index";
-
+import { findTestbyAttr, checkProps } from "./../../Utils/index";
+import { checkPropTypes } from "prop-types";
 const setUp = (props = {}) => {
   const component = shallow(<Headline {...props} />);
   return component;
@@ -17,6 +17,24 @@ describe("Test Headline Component", () => {
         desc: "Click the button to render posts!",
       };
       component = setUp(props);
+    });
+
+    it("It should not throw Error", () => {
+      const expectedProps = {
+        header: "Text",
+        desc: "Text",
+        tempArr: [
+          {
+            fName: "Bob",
+            lName: "Jack",
+            email: "bobjack@gmail.com",
+            age: 21,
+            onlineStatus: false,
+          },
+        ],
+      };
+      const propsErr = checkProps(Headline, expectedProps);
+      expect(propsErr).toBeUndefined();
     });
 
     it("should render without any errors", () => {
