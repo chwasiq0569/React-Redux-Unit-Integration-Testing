@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { successReducer } from "./sucessReducer";
+import { postsReducer } from "./postsReducer";
 
-const rootReducer = combineReducers({ successReducer });
+const rootReducer = combineReducers({ postsReducer });
 export default rootReducer;
