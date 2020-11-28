@@ -2,7 +2,6 @@ import React from "react";
 import "./app.css";
 import Header from "./Components/Header/index";
 import Headline from "./Components/Headling/index";
-
 function App() {
   const tempArr = [
     {
