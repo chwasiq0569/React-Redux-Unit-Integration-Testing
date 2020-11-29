@@ -1,6 +1,7 @@
-export const postActions = () => {
+export const postActions = (payload) => {
   return {
     type: "GET_POSTS",
+    payload: payload,
   };
 };
 
