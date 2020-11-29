@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./app.css";
 import Header from "./Components/Header/index";
 import Headline from "./Components/Headling/index";
@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import SharedButton from "./Components/SharedButton/SharedButton";
 import { postsReducer } from "./reducers/postsReducer";
 import ListItem from "./Components/ListItem/ListItem";
+
 function App(props) {
   const tempArr = [
     {
@@ -19,8 +20,8 @@ function App(props) {
   ];
 
   const fetch = () => {
-    console.log("Button Clicked");
     props.fetchPosts();
+    exampleState_hideBtn();
   };
 
   const configButton = {
@@ -28,8 +29,13 @@ function App(props) {
     emitEvent: fetch,
   };
 
+  const exampleState_hideBtn = () => {
+    setHideBtn(!hideBtn);
+  };
+  const [hideBtn, setHideBtn] = useState(false);
+
   return (
-    <div className="App">
+    <div className="App" data-test="appComponent">
       <Header />
       <section className="main">
         <Headline
@@ -37,7 +43,7 @@ function App(props) {
           desc="Click the button to render posts!"
           tempArr={tempArr}
         />
-        <SharedButton {...configButton} />
+        {!hideBtn && <SharedButton {...configButton} />}
         {props.posts.length > 0 && (
           <div>
             {props.posts.map((post, index) => {
